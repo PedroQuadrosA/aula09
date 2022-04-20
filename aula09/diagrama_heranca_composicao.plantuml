@@ -1,0 +1,44 @@
+@startuml heranca_associacao
+
+title Diagrama de Classes
+
+class Pessoa{
+    - nome:String 
+    - endereco: String
+    + construtor(nome, endereco)
+}
+
+class PessoaFisica{
+    - cpf:String
+    - data: Date 
+    + construtor(pessoa, cpf, data)
+    + validar_cpf(cpf)
+}
+
+class PessoaJuridica{
+    - cnpf: String
+    + construtor(pessoa, cnpj)
+    + validar_cnpj(cnpj)
+}
+
+class Agencia{
+    - numero_ag: Int
+    - telefone: String
+    - endereco: String
+    + construtor(numero_ag, telefone, endereco)
+
+}
+
+class ContaCorrente{
+    - numero_cc: Int
+    - pessoa: Pessoa
+    - agencia: Agencia
+    - saldo: Float
+    + construtor(numero_cc, pessoa, agencia, saldo)
+}
+Pessoa o-- PessoaFisica
+Pessoa o-- PessoaJuridica
+Pessoa *-- ContaCorrente
+Agencia *-- ContaCorrente
+
+@enduml
